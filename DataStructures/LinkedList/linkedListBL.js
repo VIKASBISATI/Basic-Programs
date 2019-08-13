@@ -32,11 +32,11 @@ class LinkedList {
         while (t.next != null) {
             t = t.next;
         }
+        }
         n.next = t.next;
         t.next = n;
         console.log('head data' + this.head.data);
         return true;
-
     }
     deleteAtBegining() {
         if (this.head.next == null) {

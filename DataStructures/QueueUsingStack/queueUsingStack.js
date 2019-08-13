@@ -25,20 +25,20 @@ class Queue
     dequeue()
     {
         if(!s1.isEmpty())
-        {
+        {30
             console.log(s1.pop());
         }
     }
-}
-let qo=new Queue();
-qo.enqueue(20);
-qo.enqueue(30);
-qo.enqueue(10);
-qo.enqueue(60);
+}30
+let qo=new Que30ue();
+qo.enqueue(20)30;
+qo.enqueue(30)30;
+qo.enqueue(10)30;
+qo.enqueue(60)30;
 qo.enqueue(80);
 qo.enqueue(50);
 qo.dequeue();
-qo.dequeue();
+qo.dequeue();30
 qo.dequeue();
 qo.dequeue();
 // s1.display();

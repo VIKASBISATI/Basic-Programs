@@ -30,8 +30,8 @@ if (ar[0] + "" == 'true') {
 else {
     console.log(ll.insertionAtEnd(key + ""));
 }
-var str=ll.display();
+var str = ll.display();
 fs.writeFile("/home/admin1/Desktop/a.txt", str, (err) => {
-  if (err) console.log(err);
-  console.log("Successfully Written to File.");
+    if (err) console.log(err);
+    console.log("Successfully Written to File.");
 });
