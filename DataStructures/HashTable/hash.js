@@ -1,100 +1,65 @@
-class Node
-{
-Node next;
-int data;
-Node(int data)
-{
-this.data=data;
+var input = require('readline-sync');
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
 }
-}
-class Hash
-{
-static Node table[];
-static int size;
-Hash(int l)
-{
-table=new Node[l];
-size=0;
-}
-public static int pos(int x,int s)
-{
-int rem=x%s;
-return rem;
-}
+class Hash {
 
-public static boolean insert(int value)
-{
-size++;
-Node ne=new Node(value);
-int index=pos(value,table.length);
-System.out.println(index);
-/* if(table[index]==null)
-{
-table[index]=ne;
-return true;
+    constructor(l) {
+        this.table = [];
+        this.table.length = l;
+        this.size = 0;
+    }
+    pos(x, s) {
+        var rem = x % s;
+        return rem;
+    }
+    insert(value) {
+        this.size++;
+        var ne = new Node(value);
+        var index = this.pos(value, this.table.length);
+        console.log(index);
+        var du = this.table[index];
+        if (this.table[index] == null) {
+            this.table[index] = ne;
+            return true;
+        }
+        else {
+            while (du.next != null) {
+                du = du.next;
+            }
+            du.next = ne;
+            return true;
+        }
+    }
+    dis() {
+        for (let i = 0; i < this.table.length; i++) {
+            console.log('Indext ' + i + '  : ');
+            var b = this.table[i];
+            while (b != null) {
+                console.log(b.data);
+                if (b.next != null)
+                    console.log('-->');
+                b = b.next;
+            }
+        }
+    }
+    getSize() {
+        return this.size;
+    }
 }
-else
-{
-ne.next=table[index];
-table[index]=ne;
-return true;
-} */
-Node du=table[index];
-if(table[index]==null)
-{
-table[index]=ne;
-return true;
-}
-else{
-while(du.next!=null)
-{
-du=du.next;
-}
-du.next=ne;
-return true;
-}
-}
-public static void dis()
-{
-for(int i=0;i<table.length;i++)
-{
-System.out.print("Indext "+i+"  : ");
-Node b=table[i];
-while(b!=null)
-{
-System.out.print(b.data);
-if(b.next!=null)
-System.out.print("-->");
-b=b.next;
-}
-System.out.println();
-}
-}
-public static int getSize()
-{
-return size;
-}
-}
-public class Test
-{
-public static void main(String args[])
-{
-Scanner in=new Scanner(System.in);
-
-System.out.println("Enter the size of the Hash Table");
-int si=in.nextInt();
-Hash ha=new Hash(si+1);	
-Hash.insert(77);
-Hash.insert(44);
-Hash.insert(55);
-Hash.insert(26);
-Hash.insert(93);
-Hash.insert(17);
-Hash.insert(31);
-Hash.insert(54);
-Hash.insert(20);
-System.out.println("The size is "+Hash.getSize());
-Hash.dis();
-
-}
-}
+var si = input.questionInt('Enter the size of the Hash Table');
+var ha = new Hash(si + 1);
+ha.insert(77);
+ha.insert(44);
+ha.insert(55);
+ha.insert(26);
+ha.insert(93);
+ha.insert(17);
+ha.insert(31);
+ha.insert(54);
+ha.insert(20);
+console.log('Size is ' + ha.getSize());
+ha.dis();

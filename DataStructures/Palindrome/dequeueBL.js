@@ -4,12 +4,10 @@ class Dequeue {
         this.rear = -1;
         this.size = size;
         this.ar = [];
+        this.ar.length=this.size;
     }
     isFull() {
-        if (this.front == 0 && this.rear == this.size - 1) {
-            return true;
-        }
-        else if (this.front == this.rear + 1) {
+        if ((this.front == 0 && this.rear == this.size - 1) || this.front == this.rear + 1){
             return true;
         }
         return false;
@@ -21,8 +19,9 @@ class Dequeue {
         return false;
     }
     insertFront(data) {
+     
         if (this.isFull()) {
-            console.log('Dequeue Oversflow');
+            console.log('Dequeue Overflow');
             return;
         }
         if (this.front == -1 && this.rear == -1) {
@@ -38,21 +37,31 @@ class Dequeue {
         this.ar[this.front] = data;
 
     }
+    getSize()
+    {
+        console.log(s);
+        let s=this.size;
+        return s;
+    }
     insertRear(data) {
+        // console.log('rear at beg'+this.rear);
+        // console.log('front at beg'+this.rear);
         if (this.isFull()) {
-            console.log('Dequeue Oversflow');
+            console.log('Dequeue Overflow');
             return;
         }
         if (this.front == -1 && this.rear == -1) {
+            // console.log('Entered')
             this.front = 0;
             this.rear = 0;
         }
-        if (this.rear == this.size - 1) {
+        else if (this.rear == this.size-1) {
             this.rear = 0;
         }
         else {
             this.rear = this.rear + 1;
         }
+        // console.log('Rear is'+this.rear);
         this.ar[this.rear] = data;
     }
     deleteFront() {
@@ -64,7 +73,7 @@ class Dequeue {
             this.front = -1;
             this.rear = -1;
         }
-        else {          
+        else {
             if (this.front == this.size - 1) {
                 this.front = 0;
             }
@@ -90,28 +99,16 @@ class Dequeue {
             this.rear = this.rear - 1;
         }
     }
-    getFront()
-    {
+    getFront() {
         return this.ar[this.front];
     }
-    getRear()
-    {
+    getRear() {
         return this.ar[this.rear];
     }
     display() {
-        for (let i = 0; let ob = new Dequeue(10);
-        ob.insertFront(10);
-        ob.insertRear(15);
-        ob.insertFront(12);
-        ob.deleteFront();
-        ob.deleteFront();
-        console.log('sldjf'+ob.getFront());
-        
-        console.log('sldjf'+ob.getFront());
-        ob.deleteRear();
-        ob.display();i < this.ar.length; i++) {
+        for (let i = 0; i < this.ar.length; i++) {
             console.log(this.ar[i]);
         }
     }
 }
-module.exports=Dequeue
+module.exports = Dequeue
