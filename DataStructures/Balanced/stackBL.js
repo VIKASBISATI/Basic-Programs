@@ -36,6 +36,7 @@ class Stack {
         for (let i = 0; i <= this.top; i++) {
             console.log(this.st[i]);
         }
+        
     }
 }
 module.exports = Stack;
