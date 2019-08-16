@@ -6,7 +6,6 @@ class Node {
     }
 }
 class Hash {
-
     constructor(l) {
         this.table = [];
         this.table.length = l;
@@ -36,14 +35,21 @@ class Hash {
     }
     dis() {
         for (let i = 0; i < this.table.length; i++) {
-            console.log('Indext ' + i + '  : ');
+            let st = 'Indext ' + i + '  : ';
             var b = this.table[i];
+            let c = 0;
             while (b != null) {
-                console.log(b.data);
+                if (c == 0) {
+                    st = st + '-->';
+                    c = 1;
+                }
+                st = st + b.data;
                 if (b.next != null)
-                    console.log('-->');
+                    st = st + '-->';
+
                 b = b.next;
             }
+            console.log(st);
         }
     }
     getSize() {
@@ -61,5 +67,5 @@ ha.insert(17);
 ha.insert(31);
 ha.insert(54);
 ha.insert(20);
-console.log('Size is ' + ha.getSize());
+// console.log('Size is ' + ha.getSize());
 ha.dis();

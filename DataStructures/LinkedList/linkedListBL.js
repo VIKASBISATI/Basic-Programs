@@ -5,7 +5,6 @@ class Node {
     }
 }
 class LinkedList {
-
     constructor() {
         this.head = null;
     }
@@ -31,7 +30,6 @@ class LinkedList {
         let t = this.head;
         while (t.next != null) {
             t = t.next;
-        }
         }
         n.next = t.next;
         t.next = n;
