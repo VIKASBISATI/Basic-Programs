@@ -32,5 +32,6 @@ switch (ch) {
     default: console.log('Wrong choice');
         break;
 
+        
 }
 }

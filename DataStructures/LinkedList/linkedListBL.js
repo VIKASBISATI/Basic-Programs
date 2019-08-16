@@ -36,6 +36,33 @@ class LinkedList {
         console.log('head data' + this.head.data);
         return true;
     }
+    insertAfterSort(data) {
+        // console.log('enterd');
+        var n = new Node(data);
+        if (this.head == null || this.head.data.localeCompare(data)>0) {
+            n.next = this.head;
+            console.log(n.data);
+            this.head=n;            
+             return n;
+        }
+        var current = this.head;
+        var prev = null;
+        while (current != null) {
+            if (current.data.localeCompare(data)>0) {
+                prev.next = n;
+                n.next = current;
+                return;
+                // return this.head;
+            }
+
+            prev = current;
+            current = current.next;
+        }
+        prev.next = n;
+        // console.log(prev.next.data);
+        // console.log(this.head.data)
+        // return this.head;
+    }
     deleteAtBegining() {
         if (this.head.next == null) {
             this.head = null;
@@ -87,7 +114,6 @@ class LinkedList {
         return [false];
     }
     deleteAtSpecificPosition(pos) {
-
         if (this.head == null) {
             return;
         }
@@ -107,4 +133,9 @@ class LinkedList {
         return d;
     }
 }
+// let o = new LinkedList();
+// o.insertAfterSort('c');
+// o.insertAfterSort('a');
+// o.insertAfterSort('b');
+// o.display();
 module.exports = LinkedList;

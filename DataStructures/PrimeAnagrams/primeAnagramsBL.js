@@ -1,4 +1,3 @@
-
 class PrimeAnagram {
     primeEvaluation(i) {
         if (i > 1) {
@@ -88,5 +87,4 @@ class PrimeAnagram {
         // console.log(row2);
     }
 }
-let o = new PrimeAnagram();
-o.operation();
+module.exports=PrimeAnagram

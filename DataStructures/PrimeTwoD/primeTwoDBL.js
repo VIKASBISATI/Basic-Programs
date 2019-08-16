@@ -34,6 +34,4 @@ class Prime {
         console.log(row);
     }
 }
-let o = new Prime();
-o.primeEvaluation();
 module.exports=Prime;
