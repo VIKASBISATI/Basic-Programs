@@ -1,5 +1,14 @@
+/******************************************************************************
+* @Purpose : PrimeAnagrams
+* @file : primeAnagramsBL.js
+* @overview :Finding the prime numbers that are anagrams using Two Dimensional array
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 05/09/2019
+******************************************************************************/
 class PrimeAnagram {
     primeEvaluation(i) {
+        //checking the number is prime or not if yes return true else false
         if (i > 1) {
             let f = 0;
             for (let j = 2; j <= i / 2; j++) {
@@ -17,6 +26,7 @@ class PrimeAnagram {
         return false;
     }
     anagramEvaluation(s1, s2) {
+        //logic for finding the anagrams if yes return true else false
         let str1 = Array.from(s1 + "");
         let str2 = Array.from(s2 + "");
         if (str1.length != str2.length) {
@@ -32,7 +42,10 @@ class PrimeAnagram {
         return true;
     }
     operation() {
+
         let col = [];
+        //calling prime function and storing in the second dimesion of two dimensional 
+        //array if the number is prime
         for (let i = 0; i <= 1000; i++) {
             if (this.primeEvaluation(i)) {
                 col.push(i);
@@ -42,6 +55,7 @@ class PrimeAnagram {
         let row = [];
         let row1 = [];
         let row2 = [];
+        //checking all the possibilities of the primes that are anagrams
         for (let i = 0; i < col.length - 1; i++) {
             for (let j = i + 1; j < col.length; j++) {
                 if (this.anagramEvaluation(col[i], col[j])) {
@@ -52,25 +66,26 @@ class PrimeAnagram {
                 }
             }
         }
-        let ar=[]
-       for(let i=0;i<row.length;i++)
-       {
-           ar[i]=row[i];
-       }
+        let ar = []
+        //copying the array that contains prime anagrams 
+        for (let i = 0; i < row.length; i++) {
+            ar[i] = row[i];
+        }
+        //sorting the prime anagrams array using insertion sort and copying back the array
+        // to the original row array
         for (let i = 1; i < ar.length; i++) {
             let key = ar[i];
-           let  j = i - 1;
-            while (j >= 0 && ar[j]>(key)) {
+            let j = i - 1;
+            while (j >= 0 && ar[j] > (key)) {
                 ar[j + 1] = ar[j];
                 j--;
             }
             ar[j + 1] = key;
         }
-        for(let i=0;i<ar.length;i++)
-       {
-           row[i]=ar[i];
-       }
-       console.log(row)
+        for (let i = 0; i < ar.length; i++) {
+            row[i] = ar[i];
+        }
+        console.log(row)
         // let i=1;
         // let j=0;
         // while(i<=10)
@@ -87,4 +102,3 @@ class PrimeAnagram {
         // console.log(row2);
     }
 }
-module.exports=PrimeAnagram

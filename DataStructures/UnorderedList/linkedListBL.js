@@ -1,3 +1,11 @@
+/******************************************************************************
+* @Purpose : PrimeAnagrams
+* @file : linkedListBL.js
+* @overview :Finding PrimeNumbers that are Anagrams after adding the data into the linkedlist
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 05/09/2019
+******************************************************************************/
 class Node {
     constructor(data) {
         this.data = data;
@@ -8,7 +16,8 @@ class LinkedList {
     constructor() {
         this.head = null;
     }
-
+    /*inserting the node at the begining i.e, 2 3 are the values to be inserted then the output
+    will be like 3-->2-->null*/
     insertionAtBegining(data) {
         let n = new Node(data);
         if (this.head == null) {
@@ -20,6 +29,8 @@ class LinkedList {
 
         return true;
     }
+    /*inserting the node at the begining i.e, 2 3 are the values to be inserted then the output
+    will be like 2-->3-->null*/
     insertionAtEnd(data) {
         console.log('Entered data ' + data)
         let n = new Node(data);
@@ -36,19 +47,21 @@ class LinkedList {
         console.log('head data' + this.head.data);
         return true;
     }
+    //inserting the element after sorting there are three condition to ensure 
+    //that is at the begining at the middle and at the end
     insertAfterSort(data) {
-        // console.log('enterd');
+        // console.log('entered');
         var n = new Node(data);
-        if (this.head == null || this.head.data.localeCompare(data)>0) {
+        if (this.head == null || this.head.data.localeCompare(data) > 0) {
             n.next = this.head;
             console.log(n.data);
-            this.head=n;            
-             return n;
+            this.head = n;
+            return n;
         }
         var current = this.head;
         var prev = null;
         while (current != null) {
-            if (current.data.localeCompare(data)>0) {
+            if (current.data.localeCompare(data) > 0) {
                 prev.next = n;
                 n.next = current;
                 return;
@@ -63,6 +76,7 @@ class LinkedList {
         // console.log(this.head.data)
         // return this.head;
     }
+    //method for deleting the node at the begining
     deleteAtBegining() {
         if (this.head.next == null) {
             this.head = null;
@@ -71,8 +85,9 @@ class LinkedList {
         this.head = this.head.next;
 
     }
+    //size method is used to find the size of the linked list
     size() {
-        let c = 1;
+        let c = 0;
         let t = this.head;
         while (t.next != null) {
             t = t.next;
@@ -80,10 +95,7 @@ class LinkedList {
         }
         return c;
     }
-    sort() {
-        console.log("soize" + this.size())
-    }
-
+    //display method is used for displaying the linked list 
     display() {
         let temp = this.head;
         // console.log(this.head.next.data);
@@ -98,6 +110,7 @@ class LinkedList {
         console.log(str);
         return str;
     }
+    //searching for key when exits return true else false
     search(key) {
         if (this.head == null) {
             return [false];
@@ -113,6 +126,7 @@ class LinkedList {
         }
         return [false];
     }
+    //delete at specific position is used to delete the element at particular position
     deleteAtSpecificPosition(pos) {
         if (this.head == null) {
             return;

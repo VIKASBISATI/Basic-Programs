@@ -1,4 +1,11 @@
-
+/******************************************************************************
+* @Purpose : PrimeNumbers from 1-1000 using Two Dimensional array
+* @file : primeAnagrams.js
+* @overview :Finding the prime numbers in 1-1000 range and storing in a two dimensional array
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 05/09/2019
+******************************************************************************/
 class Prime {
     primeEvaluation() {
         let c = 1000;
@@ -25,13 +32,13 @@ class Prime {
                 //checking for the value of f is 0 or not if 0 then it is a prime number else not
                 col.push(i);
             }
-            if ( i % 100 == 0 && i != 0) {
+            if (i % 100 == 0 && i != 0) {
                 row.push(col);
-                col=[];
+                col = [];
             }
             //col=[];
         }
         console.log(row);
     }
 }
-module.exports=Prime;
+module.exports = Prime;

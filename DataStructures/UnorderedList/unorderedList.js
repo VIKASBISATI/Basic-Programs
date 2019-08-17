@@ -1,20 +1,19 @@
 /******************************************************************************
-* @Purpose : Search for the element in the file
-* @file : readFromFile.js
-* @overview : To search for the element which is present inside the file and writing its
-again to the file
+* @Purpose : PrimeAnagrams
+* @file : unorderedList.js
+* @overview :Finding PrimeNumbers that are Anagrams after adding the data into the linkedlist
 * @author : BISATI SAI VENKATA VIKAS
 * @version : v8.15.0
 * @since : 05/09/2019
 ******************************************************************************/
-let input = require('readline-sync');
+var input = require('readline-sync');
 const fs = require('fs')
-let linkedListObject = require('./linkedListBL');
+var linkedListObject = require('./linkedListBL');
 //reading the text from the file and splitting into array by spaces
-let text = fs.readFileSync('/home/admin1/Desktop/a.txt').toString('utf-8');
-let textArray = text.split(' ');
+var text = fs.readFileSync('/home/admin1/Desktop/a.txt').toString('utf-8');
+var textArray = text.split(' ');
 //adding the elements to the linked list
-let ll = new linkedListObject();
+var ll = new linkedListObject();
 console.log(textArray)
 for (let i = 0; i < textArray.length; i++) {
     ll.insertionAtEnd(textArray[i]);
