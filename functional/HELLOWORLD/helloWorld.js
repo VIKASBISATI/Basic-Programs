@@ -10,4 +10,5 @@ let input = require('readline-sync');
 let helloWorldObject = require('./helloWorldBL');
 //reading the name of the user 
 let name = input.question('Enter your name : ');
+console.log(typeof(name))
 console.log(helloWorldObject.replaceName(name));

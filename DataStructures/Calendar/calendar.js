@@ -36,10 +36,12 @@ try {
     console.log(" S M Tu W Th F S");
     var day = calendar.day(mon, 1, year);
     console.log(day)
-    var s = ' ';
+    var s = '';
     for (let i = 0; i < day; i++) {
         console.log(' ')
+        s=s+' '
     }
+    // console.log(s)
     for (var i = 1; i <= days[mon]; i++) {
         console.log(' ' + i)
         //giving the spaces at the end of the week and month

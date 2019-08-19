@@ -1,17 +1,40 @@
 {
-"Grocery":
-{
-    "Rice":[
-        {"Name":"Basmathi","Weight":"40","Price":"2500"},
-        {"Name":"Brown","Weight":"20","Price":"1200"}
-    ],
-    "Wheat":[
-        {"Name":"ActionWheat","Weight":"10","Price":"1500"},
-        {"Name":"IndianSambhaWheat","Weight":"20","Price":"800"}
-    ],
-    "Pulses":[
-        {"Name":"GreenGram","Weight":"15","Price":"600"},
-        {"Name":"BengalGram","Weight":"10","Price":"760"}
-    ]
-}
+    "Grocery": {
+        "Rice": [
+            {
+                "Name": "Basmathi",
+                "Weight": "40",
+                "PricePerKg": "65"
+            },
+            {
+                "Name": "Brown",
+                "Weight": "20",
+                "PricePerKg": "53"
+            }
+        ],
+        "Wheat": [
+            {
+                "Name": "ActionWheat",
+                "Weight": "10",
+                "PricePerKg": "15"
+            },
+            {
+                "Name": "IndianSambhaWheat",
+                "Weight": "20",
+                "PricePerKg": "40"
+            }
+        ],
+        "Pulses": [
+            {
+                "Name": "GreenGram",
+                "Weight": "15",
+                "PricePerKg": "40"
+            },
+            {
+                "Name": "BengalGram",
+                "Weight": "10",
+                "PricePerKg": "76"
+            }
+        ]
+    }
 }
