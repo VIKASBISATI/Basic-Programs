@@ -9,6 +9,7 @@
 let square = (c) => {
     //finding the square root of the non-negative number by using the formula 
     let epsilon = parseFloat(1.0e-15);
+    // parseFloat(1.0e-15)
     let t = c;
     while (Math.abs(t - c / t) > epsilon * t) {
         t = (c / t + t) / 2.0;

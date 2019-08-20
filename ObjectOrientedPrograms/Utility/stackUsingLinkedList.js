@@ -1,3 +1,12 @@
+/******************************************************************************
+* @Purpose : PrimeAnagrams Using Stack implemented using Linked List
+* @file : stackUsingLinkedList.js
+* @overview :Finding the prime numbers that are anagrams using Stack data structure
+implemented with the help of linked list in a reverse order
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 05/09/2019
+******************************************************************************/
 class Node {
     constructor(data) {
         this.data = data;
@@ -10,7 +19,6 @@ class StackUsingLinkedList {
         this.size = size;
         this.count = 0;
     }
-
     isFull() {
         if (this.count <= this.size) {
             return false;
@@ -45,29 +53,5 @@ class StackUsingLinkedList {
             temp = temp.next;
         }
     }
-   displayReverse(t) {
-        if (t == null) {
-            return;
-        }
-        this.displayReverse(t.next)
-        console.log(t.data)
-    }
-    getHead() {
-        let t = this.top;
-        this.displayReverse(t);
-    }
 }
-let s = new StackUsingLinkedList(10);
-s.push(10);
-s.push(20);
-s.push(30);
-s.push(40);
-s.push(50);
-s.push(60); 
-// console.log(s.pop());
-// console.log(s.pop());
-// console.log(s.pop());
-// console.log(s.pop());
-s.getHead();
-// s.reverseDisplay();
 module.exports = StackUsingLinkedList
