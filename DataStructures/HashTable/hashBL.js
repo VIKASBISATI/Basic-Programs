@@ -50,7 +50,6 @@ class Hash {
     }
     //displaying the table elements by index wise
     dis() {
-
         for (let i = 0; i < this.table.length; i++) {
             let st = 'Indext ' + i + '  : ';
             var b = this.table[i];

@@ -11,25 +11,68 @@ var suit = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
 console.log(suit);
 var rank = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
 var len = suit.length * rank.length;
-var deck = [];
-deck.length = len;
+var deckOfCards = [];
+deckOfCards.length = len;
 for (let i = 0; i < rank.length; i++) {
     for (let j = 0; j < suit.length; j++) {
-        deck[4*i+j]=rank[i]+' of type '+suit[j];
+        deckOfCards[4*i+j]=rank[i]+' of type '+suit[j];
     }
 }
-// console.log(deck);
-// console.log(deck.length);
-for(let i=0;i<deck.length;i++)
+console.log('Before');
+console.log(deckOfCards);
+// console.log(deckOfCards.length);
+var player=[];
+player.length=52;
+for(let i=0;i<deckOfCards.length;i++)
 {
-    let rand=Math.floor(Math.random()*len) + 1;
-    console.log('rand is '+rand)
+    let rand=i+parseInt(Math.random()*(deckOfCards.length-i));
+    // console.log('rand is '+rand);
+    let s=deckOfCards[rand];
+    deckOfCards[i]=deckOfCards[rand];
+    deckOfCards[rand]=s;
 }
-var ar=[];
- ar[0]=2;
-let r=1;
-console.log(ar.indexOf(r))
-if(ar.indexOf(r)==-1)
+console.log('After');
+console.log(deckOfCards.length);
+var player1=[];
+var player2=[];
+var player3=[];
+var player4=[];
+player1.length=13;
+player2.length=13;
+player3.length=13;    
+// console.log(i);
+// console.log('entered')
+player4.length=13;
+var [a,b,c,d]=[0,0,0,0];
+for(let i=0;i<deckOfCards.length;i++)
 {
-    console.log('hi')
+if(i<13)
+{
+    player1[a++]=deckOfCards[i];
 }
+else if(i>=13&&i<26)
+{
+    player2[b++]=deckOfCards[i];
+}
+else if(i>=26&&i<39)
+{
+    player3[c++]=deckOfCards[i];
+}
+else if(i>=39&&i<52){
+    player4[d++]=deckOfCards[i];
+}
+}
+let finalTwoDArray=[];
+// console.log('Player1');
+// console.log(player1);
+// console.log('Player2');
+// console.log(player2);
+// console.log('Player3');
+// console.log(player3);
+// console.log('Player4');
+// console.log(player4);
+finalTwoDArray.push(player1);
+finalTwoDArray.push(player2);
+finalTwoDArray.push(player3);
+finalTwoDArray.push(player4);
+console.log(finalTwoDArray);

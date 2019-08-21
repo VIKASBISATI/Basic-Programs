@@ -1,0 +1,43 @@
+[
+    {
+        "name": "HavellsIndiaLtd",
+        "numberOfShares": 50,
+        "value": 2500
+    },
+    {
+        "name": "DELL",
+        "numberOfShares": 14,
+        "value": 1230,
+        "stockSymbol": "NYSE"
+    },
+    {
+        "name": "COCOCOLA",
+        "numberOfShares": 20,
+        "value": 7450
+    },
+    {
+        "name": "BMRCL",
+        "numberOfShares": 20,
+        "value": 1300
+    },
+    {
+        "name": "DivisLaboratoriesLtd",
+        "numberOfShares": 30,
+        "value": 2400
+    },
+    {
+        "name": "TataConsultancyServicesLtd",
+        "numberOfShares": 15,
+        "value": 3000
+    },
+    {
+        "name": "WiproLtd",
+        "numberOfShares": 25,
+        "value": 1200
+    },
+    {
+        "name": "InfosysLtd",
+        "numberOfShares": 60,
+        "value": 2000
+    }
+]

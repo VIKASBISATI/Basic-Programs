@@ -46,12 +46,15 @@ class StackUsingLinkedList {
             return d;
         }
     }
-    display() {
+    display(arr) {
+        var str='';
         let temp = this.top;
         while (temp != null) {
-            console.log(temp.data);
+            arr.push(temp.data)
             temp = temp.next;
         }
+        // console.log(str);
+        return arr;
     }
 }
-module.exports = StackUsingLinkedList
+module.exports = StackUsingLinkedList;

@@ -99,12 +99,14 @@ class LinkedList {
     //display method is used for displaying the linked list 
     display() {
         let temp = this.head;
+        var str='';
         while (temp != null) {
             console.log(temp.data);
+            str=str+temp.data;
             temp = temp.next;
         }
-        // console.log(str);
-        // return str;
+        console.log(str);
+        return str;
     }
     //searching for key when exits return true else false
     search(key) {

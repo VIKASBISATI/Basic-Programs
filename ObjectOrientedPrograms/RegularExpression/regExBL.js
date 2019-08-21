@@ -14,7 +14,6 @@ class RegEx {
     }
     setPat1(pat1) {
         this.pat1 = pat1;
-
     }
     setPat2(pat2) {
         this.pat2 = pat2;

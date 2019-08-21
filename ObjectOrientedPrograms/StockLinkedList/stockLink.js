@@ -57,3 +57,4 @@ class StockAccount {
 }
 let ob = new StockAccount('BMRCL', '45', '1230');
 ob.buy();
+ob.save()
