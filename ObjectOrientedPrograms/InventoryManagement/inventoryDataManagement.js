@@ -1,5 +1,5 @@
 /******************************************************************************
-* @Purpose :JSON Inventory Data Management of Rice, Pulses and Wheats
+* @Purpose :JSON Inventory Data Management of Rice, Pulses and Wheat
 * @file : inventoryDataManagement.js
 * @overview : To read the data from json file and process the data and finally 
 print the corresponding output. 
@@ -12,6 +12,7 @@ const fs = require('fs');
 try {
     var txt = fs.readFileSync('/home/admin1/Desktop/b.txt').toString('utf-8');
     var jsonText = JSON.parse(txt);
+    console.log(jsonText)
     if (txt == '') throw "File is Empty"
     for (var kind in jsonText.Grocery) {
         for (let i = 0; i < jsonText.Grocery[kind].length; i++) {
