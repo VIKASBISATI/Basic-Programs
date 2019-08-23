@@ -1,0 +1,32 @@
+[
+    {
+        "Name": "Basmathi",
+        "Weight": "40",
+        "PricePerKg": "65"
+    },
+    {
+        "Name": "Brown",
+        "Weight": "20",
+        "PricePerKg": "53"
+    },
+    {
+        "Name": "ActionWheat",
+        "Weight": "10",
+        "PricePerKg": "15"
+    },
+    {
+        "Name": "IndianSambhaWheat",
+        "Weight": "20",
+        "PricePerKg": "40"
+    },
+    {
+        "Name": "GreenGram",
+        "Weight": "15",
+        "PricePerKg": "40"
+    },
+    {
+        "Name": "BengalGram",
+        "Weight": "10",
+        "PricePerKg": "76"
+    }
+]
