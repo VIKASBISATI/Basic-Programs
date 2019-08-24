@@ -29,8 +29,8 @@ var ar = [];
 ar = ll.search(key);
 //The element will be deleted from the linked list when the key is found otherwise it will be added 
 if (ar[0] + "" == 'true') {
-    ll.devareAtSpecificPosition(parseInt(ar[1]));
-    console.log('After devaring at specific position ');
+    ll.deleteAtSpecificPosition(parseInt(ar[1]));
+    console.log('After deleting at specific position ');
 }
 else {
     console.log(ll.insertAfterSort(key + ""));

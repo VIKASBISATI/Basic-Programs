@@ -29,7 +29,6 @@ class QueueLink {
         }
         this.rear.next = t;
         this.rear = t;
-
     }
     //getHead method is used for returning the front pointer
     getHead() {

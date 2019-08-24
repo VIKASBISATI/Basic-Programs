@@ -149,9 +149,9 @@ class LinkedList {
         return d;
     }
 }
-// let o = new LinkedList();
-// o.insertAfterSort('c');
-// o.insertAfterSort('a');
-// o.insertAfterSort('b');
-// o.display();
+let o = new LinkedList();
+o.insertAfterSort('c');
+o.insertAfterSort('a');
+o.insertAfterSort('b');
+o.display();
 module.exports = LinkedList;

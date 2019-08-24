@@ -7,11 +7,13 @@
 * @since : 19/09/2019
 ******************************************************************************/
 class RegEx {
+    //creating the bean class RegEx with getter and setter methods
     constructor() {
         this.pat1;
         this.pat2;
         this.pat3;
     }
+    //setting three patterns for mobilenumber,date and username
     setPat1(pat1) {
         this.pat1 = pat1;
     }
@@ -21,6 +23,7 @@ class RegEx {
     setPat3(pat3) {
         this.pat3 = pat3;
     }
+    //getting the name for mobilenumber,username and date
     getPat1() {
         // console.log('get'+this.pat1)
         return this.pat1;
@@ -32,14 +35,19 @@ class RegEx {
         return this.pat3;
     }
 }
+//inheritance is acheived by the Compute class
 class Compute extends RegEx {
     constructor() {
+        //calling the super class constructor
         super();
     }
     compute(str) {
-        console.log(' asdfa'+super.getPat1())
+        /* validating all the patterns if all the three patterns matches with the given string
+        then the next statements will be executed else it will produce false result*/
+        console.log(' asdfa' + super.getPat1())
         if (super.getPat1().test(str) && super.getPat2().test(str) && super.getPat3().test(str)) {
-            console.log('Hellow'+this.pat1)
+            //replacing the matched patterns with the given test cases
+            console.log('Hellow' + this.pat1)
             var t1 = str.match(this.pat1);
             // console.log(t1[0]);
             let s = t1[0];
@@ -62,4 +70,5 @@ class Compute extends RegEx {
         }
     }
 }
+//exporting the classes Compute,Regex
 module.exports = Compute, RegEx;

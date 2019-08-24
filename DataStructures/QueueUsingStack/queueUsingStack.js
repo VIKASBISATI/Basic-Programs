@@ -30,7 +30,6 @@ class Queue {
     //popping the elements from the first stack
     dequeue() {
         if (!s1.isEmpty()) {
-            
             console.log(s1.pop());
         }
     }

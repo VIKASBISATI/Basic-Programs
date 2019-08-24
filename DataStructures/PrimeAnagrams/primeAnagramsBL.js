@@ -18,7 +18,6 @@ class PrimeAnagram {
                 }
             }
             if (f == 0) {
-
                 return true;
             }
             return false;
@@ -42,7 +41,6 @@ class PrimeAnagram {
         return true;
     }
     operation() {
-
         let col = [];
         //calling prime function and storing in the second dimesion of two dimensional 
         //array if the number is prime
