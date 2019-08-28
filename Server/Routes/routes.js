@@ -8,8 +8,10 @@
 ******************************************************************************/
 const express = require('express');
 const routes = express.Router();
-const controller = require('../Controllers/controller.js')
+const controller = require('../Controllers/controller')
+const ver=require('../token');
 routes.post('/login', controller.login);
 routes.post('/register', controller.register);
-routes.post('/setPassword', controller.setPassword);
-routes.get('/resetPassword', controller.resetPassword);
+routes.post('/forgotPassword', controller.forgotPassword);
+routes.post('/forgotPassword/:token',ver.verifyToken, controller.setPassword);
+module.exports = routes;

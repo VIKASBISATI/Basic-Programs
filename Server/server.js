@@ -10,15 +10,19 @@ const routes = require('./Routes/routes')
 //importing express library
 const express = require('express')
 const bodyParser = require('body-parser')
-const expressValidator = require('express-validator')
 //app variable give the access to use http methods and some other methods
 const app = express()
-// const route=app.router()
+var expressValidator = require('express-validator')
+app.use(expressValidator());
 const dbConfig = require('./Configuration/database.config')
 const mongoose = require('mongoose')
-app.use('/',routes)
-app.use(expressValidator)
+// require('http').createServer(app);
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 app.use(bodyParser.json())
+app.use('/', routes)
+require('dotenv').config();
 //mongoose.Promise = global.Promise used for using mongoose anywhere in the code
 mongoose.Promise = global.Promise
 //promise then and catch have a call back for successfull connection and catch for failed connection 
@@ -32,4 +36,7 @@ mongoose.connect(dbConfig.url, {
 app.get('/', (req, res) => {
     res.json('Welcome to chatApp')
 })
-app.listen(4000)
+app.listen(4000, () => {
+    console.log("server listening on 4000 port");
+})
+module.exports = app;
