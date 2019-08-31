@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Controller from '../controllers/userController';
 import { Card } from '@material-ui/core';
 export default class ResetPassword extends React.Component {
     constructor(props) {
@@ -21,6 +22,9 @@ export default class ResetPassword extends React.Component {
         this.setState({
             confirmpassword: confirmpassword
         })
+    }
+    handleSubmit = () => {
+        Controller.resetPassword(this.state.password,this.state.confirmpassword)
     }
     render() {
         return (
@@ -56,7 +60,7 @@ export default class ResetPassword extends React.Component {
                             />
                         </div>
                         <div class="button">
-                            <Button variant="contained" color="secondary" className="text">
+                            <Button variant="contained" color="secondary" className="text" onClick={this.handleSubmit}>
                                 OK
                          </Button>
                         </div>

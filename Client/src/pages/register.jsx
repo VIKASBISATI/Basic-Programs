@@ -2,7 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Card } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import Controller from '../controllers/userController'
+import Controller from '../controllers/userController';
+import Snackbar from '@material-ui/core/Snackbar';
 import '../App.css'
 export default class Register extends React.Component {
     constructor(props) {
@@ -11,7 +12,8 @@ export default class Register extends React.Component {
             firstName: "",
             lastName: "",
             email: "",
-            password: ""
+            password: "",
+            openSnackBar:false
         }
     }
     handleChangeMail = (event) => {
@@ -42,15 +44,33 @@ export default class Register extends React.Component {
         this.props.history.push('/login')
     }
     handleSubmit = () => {
-        var login = Controller.register(this.state.firstName, this.state.lastName, this.state.email, this.state.password)
-        if (login.status===200) {
-            console.log('Register Successfull');
-            this.props.history.push('/login')
+        if (this.state.firstName === "") {
+            this.setState({
+                openSnackBar: true,
+                SnackBarMessage: 'First Name Cannot Be Empty'
+            })
+        }
+        else if (!this.state.lastName === "") {
+            this.setState({
+                openSnackBar: true,
+                SnackBarMessage: 'Last Name Cannot Be Empty'
+            })
+        }
+        else if (!this.state.email === "") {
+            this.setState({
+                openSnackBar: true,
+                SnackBarMessage: 'Email Cannot Be Empty'
+            })
+        }
+        else if (this.state.password === "") {
+            this.setState({
+                openSnackBar: true,
+                SnackBarMessage: 'Password Name Cannot Be Empty'
+            })
         }
         else {
-            console.log('Registration Failed!!');
+            Controller.register(this.state.firstName, this.state.lastName, this.state.email, this.state.password)
         }
-     
     }
     render() {
         return (
@@ -113,6 +133,7 @@ export default class Register extends React.Component {
                          </Button>
                         </div>
                     </form>
+
                 </Card>
             </div>
         )
