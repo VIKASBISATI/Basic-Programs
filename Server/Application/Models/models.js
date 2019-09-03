@@ -9,22 +9,23 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var userScehma = new mongoose.Schema({
-    firstName:
+    "firstName":
     {
         type: String,
         required: true
     },
-    lastName:
+    "lastName":
     {
         type: String,
         required: true
     },
-    email:
+    "email":
     {
         type: String,
+        unique:true,
         required: true,
     },
-    password:
+    "password":
     {
         type: String,
         required: true,
@@ -40,8 +41,6 @@ exports.login = (req, callback) => {
                 callback("Email Dosesn't Exists");
             }
             else {
-                console.log(req.body.password);
-                console.log(result.password);
                 bcrypt.compare(req.body.password,result.password , (err, sucess) => {
                     console.log(err)
                     if (sucess) {
@@ -56,7 +55,7 @@ exports.login = (req, callback) => {
         })
 }
 exports.register = (req, callback) => {
-    // console.log("gdhsgfsgf", req.body);
+    console.log("data regeister", req.body.password);
     user.findOne({
         "email": req.body.email
     }, (err, data) => {
@@ -68,10 +67,12 @@ exports.register = (req, callback) => {
                     "lastName": req.body.lastName,
                     "email": req.body.email,
                     "password": encrypted
-                })
+                }) 
+               
                 userDetails.save((err, data) => {
-                    if (err) callback(err);
+                    if (err){ callback(err); console.log("ddfdfdfffdffdffferrr",err)}
                     else {
+                        console.log("in save",data)
                         callback(null, data);
                     }
                 })

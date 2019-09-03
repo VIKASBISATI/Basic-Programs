@@ -15,15 +15,14 @@ exports.generateToken = (payload) => {
     // console.log('Token is '+token)
     return token;
 }
-
 exports.verifyToken=(req,res,next)=>
 {
     jwt.verify(req.params.token, 'vikasSecret', function(err, decoded) {
        if(err) res.status(400).send(err);
        else{
-           
+           console.log(req);       
            req.decoded=decoded;
            next();
        }
       });
-}
+}  

@@ -12,8 +12,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 //app variable give the access to use http methods and some other methods
 const app = express()
+// const Cors = require('cors');
 var expressValidator = require('express-validator')
 app.use(expressValidator());
+// app.use(Cors());
 const dbConfig = require('./Configuration/database.config')
 const mongoose = require('mongoose')
 // require('http').createServer(app);
@@ -27,7 +29,8 @@ require('dotenv').config();
 mongoose.Promise = global.Promise
 //promise then and catch have a call back for successfull connection and catch for failed connection 
 mongoose.connect(dbConfig.url, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex:true
 }).then(() => {
     console.log('success')
 }).catch(() => (
@@ -39,4 +42,5 @@ app.get('/', (req, res) => {
 app.listen(4000, () => {
     console.log("server listening on 4000 port");
 })
+    
 module.exports = app;

@@ -11,15 +11,15 @@ exports.sendMailToTheUser = (Email, url) => {
         from: process.env.email,
         to: Email,
         subject: 'Sending mail using node mailer',
-        text: 'SetPassword Link  :  ' + url
-    }
+        text: 'ResetPassword Link  :  ' + url
+    };
     // console.log('asdfasd',mailOptions)
     trans.sendMail(mailOptions, function (err, inf) {
         if (err) {
-            console.log(err);
+            console.log("Message not sent ",err);
         }
         else {
-            console.log(inf);
+            console.log("Message Sent Successfully",inf.envelope);
         }
     })
 }
