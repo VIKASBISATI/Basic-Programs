@@ -3,7 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { Card } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Controller from '../controllers/userController';
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar'
+import IconButton from '@material-ui/core/IconButton'
 import '../App.css'
 export default class Register extends React.Component {
     constructor(props) {
@@ -13,8 +14,11 @@ export default class Register extends React.Component {
             lastName: "",
             email: "",
             password: "",
-            openSnackBar:false
+            openSnackBar: false
         }
+    }
+    snackbarClose = (e) => {
+        this.setState({ openSnackBar: false });
     }
     handleChangeMail = (event) => {
         var email = event.target.value;
@@ -50,13 +54,13 @@ export default class Register extends React.Component {
                 SnackBarMessage: 'First Name Cannot Be Empty'
             })
         }
-        else if (!this.state.lastName === "") {
+        else if (this.state.lastName === "") {
             this.setState({
                 openSnackBar: true,
                 SnackBarMessage: 'Last Name Cannot Be Empty'
             })
         }
-        else if (!this.state.email === "") {
+        else if (this.state.email === "") {
             this.setState({
                 openSnackBar: true,
                 SnackBarMessage: 'Email Cannot Be Empty'
@@ -75,9 +79,29 @@ export default class Register extends React.Component {
     render() {
         return (
             <div>
-                <h1 className="heading">REGISTER</h1>
-                <Card className="card">
-                    <form className="registerCss">
+                <form className="registerCss">
+                    <h1 className="heading">REGISTER</h1>
+                    <Card className="card">
+                        <Snackbar
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                            // open={true}
+                            open={this.state.openSnackBar}
+                            autoHideDuration={6000}
+                            onClose={this.snackbarClose}
+                            message={<span id="messege-id">{this.state.SnackBarMessage}</span>}
+                            action={[
+                                <IconButton
+                                    key="close"
+                                    arial-label="close"
+                                    color="inherit"
+                                    onClick={this.snackbarClose}
+                                >
+                                </IconButton>
+                            ]}
+                        />
                         <div className="text">
                             <TextField
                                 required
@@ -127,15 +151,14 @@ export default class Register extends React.Component {
                         <div className="button">
                             <Button variant="contained" color="primary" id="regbutton" onClick={this.handleLogin}>
                                 Login
-                         </Button>
+                            </Button>
                             <Button variant="contained" color="secondary" className="text" onClick={this.handleSubmit}>
                                 Submit
-                         </Button>
+                            </Button>
                         </div>
-                    </form>
-
-                </Card>
-            </div>
+                    </Card>
+                </form>
+            </div >
         )
     }
 }

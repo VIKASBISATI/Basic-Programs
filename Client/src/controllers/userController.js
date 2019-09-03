@@ -1,5 +1,6 @@
-import authServices from '../services/userServices'
+import authServices from '../services/userServices';
 import axios from 'axios';
+import DashBoard from '../components/dashboard';
 var controller = {
     register(firstName, lastName, email, password) {
         var data = {
@@ -27,6 +28,7 @@ var controller = {
         }
         return axios.post(authServices.login, emailData).then(response => {
             if (response.status === 200) {
+                new DashBoard(emailData.email);
                 console.log("login Successessfully!!!!! ")
             }
         })

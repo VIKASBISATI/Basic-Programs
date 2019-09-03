@@ -14,7 +14,7 @@ export default class Login extends React.Component {
             openSnackBar:false,
             SnackBarMessage:""
         }
-    }
+    }   
     snackbarClose=(e)=>{
         this.setState({openSnackBar:false});
     }
@@ -47,7 +47,7 @@ export default class Login extends React.Component {
         else if (this.state.password === "") {
             this.setState({
                 openSnackBar: true,
-                SnackBarMessage: 'Password Name Cannot Be Empty'
+                SnackBarMessage: 'Password Cannot Be Empty'
             })
         }
         else {

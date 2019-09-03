@@ -13,7 +13,7 @@ exports.login = (data, callback) => {
             callback(err);
         }
         else {
-            callback(null,result);
+            callback(null, result);
         }
     })
 }
@@ -23,7 +23,7 @@ exports.register = (data, callback) => {
             callback(err);
         }
         else {
-            callback(null,result);
+            callback(null, result);
         }
     })
 }
@@ -34,13 +34,23 @@ exports.setPassword = (data, callback) => {
             callback(err);
         }
         else {
-            
-            callback(null,result);
+
+            callback(null, result);
         }
     })
 }
 exports.forgotPassword = (data, callback) => {
     userModel.forgotPassword(data, (err, result) => {
+        if (err) {
+            callback(err);
+        }
+        else {
+            callback(null, result);
+        }
+    })
+}
+exports.getAllUsers = (data, callback) => {
+    userModel.getAllUsers(data, (err, result) => {
         if (err) {
             callback(err);
         }

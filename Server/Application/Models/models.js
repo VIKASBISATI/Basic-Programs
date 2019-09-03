@@ -22,7 +22,7 @@ var userScehma = new mongoose.Schema({
     "email":
     {
         type: String,
-        unique:true,
+        unique: true,
         required: true,
     },
     "password":
@@ -41,13 +41,13 @@ exports.login = (req, callback) => {
                 callback("Email Dosesn't Exists");
             }
             else {
-                bcrypt.compare(req.body.password,result.password , (err, sucess) => {
+                bcrypt.compare(req.body.password, result.password, (err, sucess) => {
                     console.log(err)
                     if (sucess) {
-                        callback(null,result)
+                        callback(null, result)
                     }
                     else {
-                       
+
                         callback("pass word mismatch")
                     }
                 })
@@ -67,12 +67,12 @@ exports.register = (req, callback) => {
                     "lastName": req.body.lastName,
                     "email": req.body.email,
                     "password": encrypted
-                }) 
-               
+                })
+
                 userDetails.save((err, data) => {
-                    if (err){ callback(err); console.log("ddfdfdfffdffdffferrr",err)}
+                    if (err) { callback(err); console.log("ddfdfdfffdffdffferrr", err) }
                     else {
-                        console.log("in save",data)
+                        console.log("in save", data)
                         callback(null, data);
                     }
                 })
@@ -83,18 +83,18 @@ exports.register = (req, callback) => {
 exports.setPassword = (req, callback) => {
     bcrypt.hash(req.body.password, 10, (err, encrypted) => {
 
-        if(err) callback(err);
-        else{
+        if (err) callback(err);
+        else {
             user.updateOne({ "_id": req.decoded.payload.userid }, { "password": encrypted }, (error, result) => {
-            if (error) {
-                console.log('model error')
-                callback(error);
-            }
-            else {
-                callback(null, result);
-            }
-        })
-    }
+                if (error) {
+                    console.log('model error')
+                    callback(error);
+                }
+                else {
+                    callback(null, result);
+                }
+            })
+        }
     })
 }
 exports.forgotPassword = (req, callback) => {
@@ -103,9 +103,17 @@ exports.forgotPassword = (req, callback) => {
             callback(err);
         }
         else {
-         
-             callback(null, result) 
-          
+            callback(null, result)
+        }
+    })
+}
+exports.getAllUsers = (req, callback) => {
+    user.find({}, (err, result) => {
+        if (err) {
+            callback(err);
+        }
+        else {
+            callback(null, result);
         }
     })
 }

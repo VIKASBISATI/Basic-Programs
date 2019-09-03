@@ -9,9 +9,10 @@
 const express = require('express');
 const routes = express.Router();
 const controller = require('../Controllers/controller')
-const ver=require('../token');
+const ver = require('../token');
 routes.post('/login', controller.login);
-routes.post('/register',controller.register);
+routes.post('/register', controller.register);
 routes.post('/forgotPassword', controller.forgotPassword);
-routes.post('/resetPassword/:token',ver.verifyToken, controller.setPassword);
+routes.post('/resetPassword/:token', ver.verifyToken, controller.setPassword);
+routes.get('/getAllUsers', controller.getAllUsers);
 module.exports = routes;
