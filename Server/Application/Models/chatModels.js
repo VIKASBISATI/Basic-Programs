@@ -29,7 +29,7 @@ exports.addMessageToTheDatabase=(req,callback)=>{
         }
     })
 }
-exports.getAllUsers = (req, callback) => {
+exports.getAllUsersChats = (req, callback) => {
     chatModel.find({}, (err, result) => {
         if (err) {
             callback(err);

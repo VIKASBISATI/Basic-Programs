@@ -43,7 +43,7 @@ exports.login = (req, callback) => {
             else {
                 bcrypt.compare(req.body.password, result.password, (err, sucess) => {
                     console.log(err)
-                    if (sucess) {
+                    if (sucess) { 
                         callback(null, result)
                     }
                     else {
@@ -99,6 +99,16 @@ exports.setPassword = (req, callback) => {
 }
 exports.forgotPassword = (req, callback) => {
     user.findOne({ "email": req.body.email }, (err, result) => {
+        if (err) {
+            callback(err);
+        }
+        else {
+            callback(null, result)
+        }
+    })
+}
+exports.getAllUsers = (req, callback) => {
+    user.findOne({}, (err, result) => {
         if (err) {
             callback(err);
         }

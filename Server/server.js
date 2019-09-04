@@ -30,7 +30,7 @@ mongoose.Promise = global.Promise
 //promise then and catch have a call back for successfull connection and catch for failed connection 
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true,
-    useCreateIndex:true
+    useCreateIndex: true
 }).then(() => {
     console.log('success')
 }).catch(() => (
@@ -39,19 +39,20 @@ mongoose.connect(dbConfig.url, {
 app.get('/', (req, res) => {
     res.json('Welcome to chatApp')
 })
-const server=app.listen(4000, () => {
+const server = app.listen(4000, () => {
     console.log("server listening on 4000 port");
 })
-const io=require('socket.io').listen (server);
-io.sockets.on('connection',function(socket)
-{
-const cons=[];
-cons.push(socket);
-console.log('user connected')
-socket.on('msg',function(req){
+const io = require('socket.io').listen(server);
+io.sockets.on('connection', function (socket) {
+    const connections = [];
+    connections.push(socket);
+    console.log('user connected')
+    socket.on('msg', function (req) {
+        console.log('requested message', req);
+
+    })
 })
-})
-io.on('disconnect',function(){
+io.on('disconnect', function () {
     io.emit('User Disconnected')
 })
 module.exports = app; 

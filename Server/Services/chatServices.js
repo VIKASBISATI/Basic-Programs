@@ -9,8 +9,8 @@ exports.addMessageToTheDatabase = (data, callback) => {
         }
     })
 }
-exports.getAllUsers = (data, callback) => {
-    chatModel.getAllUsers(data, (err, result) => {
+exports.getAllUsersChats = (data, callback) => {
+    chatModel.getAllUsersChats(data, (err, result) => {  
         if (err) {
             callback(err);
         }

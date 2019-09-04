@@ -14,9 +14,9 @@ exports.addMessageToTheDatabase = (req, res) => {
         res.send(err);
     }
 }
-exports.getAllUsers = (req, res) => {
+exports.getAllUsersChats = (req, res) => {
     try {
-        services.getAllUsers(req, (err, result) => {
+        services.getAllUsersChats(req, (err, result) => {
             if (err) {
                 // console.log('status 404 yes');
                 res.status(404).send(err);

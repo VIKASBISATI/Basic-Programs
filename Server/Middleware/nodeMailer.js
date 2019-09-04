@@ -22,4 +22,4 @@ exports.sendMailToTheUser = (Email, url) => {
             console.log("Message Sent Successfully",inf.envelope);
         }
     })
-}
+} 

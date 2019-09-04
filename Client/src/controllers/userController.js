@@ -1,6 +1,6 @@
 import authServices from '../services/userServices';
 import axios from 'axios';
-import DashBoard from '../components/dashboard';
+// import DashBoard from '../components/dashboard';
 var controller = {
     register(firstName, lastName, email, password) {
         var data = {
@@ -28,7 +28,6 @@ var controller = {
         }
         return axios.post(authServices.login, emailData).then(response => {
             if (response.status === 200) {
-                new DashBoard(emailData.email);
                 console.log("login Successessfully!!!!! ")
             }
         })
@@ -66,6 +65,16 @@ var controller = {
             .catch(error => {
                 console.log("reset failed " + error);
                 return error;
+            })
+    },
+    getAllUsers(data) {
+        return axios.post(authServices.getAllUsers).then(response => {
+            if (response.status === 200) {
+                console.log('yes');
+            }
+        })
+            .catch(err => {
+                console.log(err);
             })
     }
 }

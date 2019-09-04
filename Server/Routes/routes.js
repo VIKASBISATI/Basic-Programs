@@ -16,5 +16,6 @@ routes.post('/register', controller.register);
 routes.post('/forgotPassword', controller.forgotPassword);
 routes.post('/resetPassword/:token', ver.verifyToken, controller.setPassword);
 routes.post('/addMessage', chatControllers.addMessageToTheDatabase);
-routes.get('/getAllUsers', chatControllers.getAllUsers);
+routes.get('/getAllUsersChats', chatControllers.getAllUsersChats);
+routes.get('/getAllUsers', controller.getAllUsers);
 module.exports = routes;

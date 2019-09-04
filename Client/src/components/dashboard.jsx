@@ -10,11 +10,10 @@ import Card from '@material-ui/core/Card';
 export default class Dashboard extends React.Component {
     // constructor(props) {
     //     super(props);
-
     // }
     render() {
         return (
-            <div >
+            <div>
                 <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6">
@@ -25,7 +24,6 @@ export default class Dashboard extends React.Component {
                 </AppBar>
                 <div>
                     <Card className="FirstCard">
-
                     </Card>
                     <Card className="SecondCard">
                     </Card>

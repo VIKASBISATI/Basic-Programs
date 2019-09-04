@@ -18,7 +18,7 @@ export default class Login extends React.Component {
     snackbarClose=(e)=>{
         this.setState({openSnackBar:false});
     }
-    handleChangeMail = (event) => {
+    handleChangeMail = (event)  => {
         var email = event.target.value;
         this.setState({
             email: email
@@ -52,6 +52,11 @@ export default class Login extends React.Component {
         }
         else {
             Controller.login(this.state.email, this.state.password);
+            this.setState({
+                openSnackBar: true,
+                SnackBarMessage: 'Password Cannot Be Empty'
+            });
+            this.props.history.push('/dashboard')
         }
     }
     render() {
