@@ -8,11 +8,13 @@
 ******************************************************************************/
 const express = require('express');
 const routes = express.Router();
-const controller = require('../Controllers/controller')
+const controller = require('../Controllers/controller');
+const chatControllers = require('../Controllers/chatController')
 const ver = require('../token');
 routes.post('/login', controller.login);
 routes.post('/register', controller.register);
 routes.post('/forgotPassword', controller.forgotPassword);
 routes.post('/resetPassword/:token', ver.verifyToken, controller.setPassword);
-routes.get('/getAllUsers', controller.getAllUsers);
+routes.post('/addMessage', chatControllers.addMessageToTheDatabase);
+routes.get('/getAllUsers', chatControllers.getAllUsers);
 module.exports = routes;

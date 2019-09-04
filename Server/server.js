@@ -39,8 +39,19 @@ mongoose.connect(dbConfig.url, {
 app.get('/', (req, res) => {
     res.json('Welcome to chatApp')
 })
-app.listen(4000, () => {
+const server=app.listen(4000, () => {
     console.log("server listening on 4000 port");
 })
-    
-module.exports = app;
+const io=require('socket.io').listen (server);
+io.sockets.on('connection',function(socket)
+{
+const cons=[];
+cons.push(socket);
+console.log('user connected')
+socket.on('msg',function(req){
+})
+})
+io.on('disconnect',function(){
+    io.emit('User Disconnected')
+})
+module.exports = app; 

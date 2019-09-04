@@ -48,7 +48,7 @@ exports.login = (req, callback) => {
                     }
                     else {
 
-                        callback("pass word mismatch")
+                        callback("password mismatch")
                     }
                 })
             }
@@ -104,16 +104,6 @@ exports.forgotPassword = (req, callback) => {
         }
         else {
             callback(null, result)
-        }
-    })
-}
-exports.getAllUsers = (req, callback) => {
-    user.find({}, (err, result) => {
-        if (err) {
-            callback(err);
-        }
-        else {
-            callback(null, result);
         }
     })
 }

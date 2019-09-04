@@ -36,7 +36,7 @@ exports.login = (req, res) => {
         }
     } catch (err) {
         res.send(err);
-    }
+    } 
 }
 exports.register = (req, res) => {
     try {
@@ -94,7 +94,6 @@ exports.forgotPassword = (req, res) => {
                     console.log(url);
                     sendMail.sendMailToTheUser(result.email, url);
                     res.status(200).send(url);
-
                 }
             });
         }
@@ -135,20 +134,4 @@ exports.setPassword = (req, res) => {
         res.send(err);
     }
 
-}
-exports.getAllUsers = (req, res) => {
-    try {
-        services.getAllUsers(req, (err, result) => {
-            if (err) {
-                console.log('status 404 yes');
-                res.status(404).send(err);
-            }
-            else {
-                console.log('status 200 yes');
-                res.status(200).send(result);
-            }
-        });
-    } catch (err) {
-        console.log(err);
-    }
 }

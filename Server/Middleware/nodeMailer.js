@@ -13,7 +13,7 @@ exports.sendMailToTheUser = (Email, url) => {
         subject: 'Sending mail using node mailer',
         text: 'ResetPassword Link  :  ' + url
     };
-    // console.log('asdfasd',mailOptions)
+    // console.log('asdfasd',mailOptions) 
     trans.sendMail(mailOptions, function (err, inf) {
         if (err) {
             console.log("Message not sent ",err);

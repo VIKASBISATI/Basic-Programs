@@ -10,14 +10,16 @@ var jwt = require('jsonwebtoken');
 exports.generateToken = (payload) => {
     // console.log('abc')
    
-    const secKey = "vikasSecret";
+    const secKey = process.env.secret;
     const token=jwt.sign({payload}, secKey, {expiresIn:'365d'});
     // console.log('Token is '+token)
     return token;
 }
 exports.verifyToken=(req,res,next)=>
 {
-    jwt.verify(req.params.token, 'vikasSecret', function(err, decoded) {
+     
+    const secKey = process.env.secret;
+    jwt.verify(req.params.token, secKey, function(err, decoded) {
        if(err) res.status(400).send(err);
        else{
            console.log(req);       
