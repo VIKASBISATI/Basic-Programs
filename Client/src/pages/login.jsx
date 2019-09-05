@@ -11,14 +11,14 @@ export default class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
-            openSnackBar:false,
-            SnackBarMessage:""
+            openSnackBar: false,
+            SnackBarMessage: ""
         }
-    }   
-    snackbarClose=(e)=>{
-        this.setState({openSnackBar:false});
     }
-    handleChangeMail = (event)  => {
+    snackbarClose = (e) => {
+        this.setState({ openSnackBar: false });
+    }
+    handleChangeMail = (event) => {
         var email = event.target.value;
         this.setState({
             email: email
@@ -42,7 +42,6 @@ export default class Login extends React.Component {
                 openSnackBar: true,
                 SnackBarMessage: 'Email Cannot Be Empty'
             })
-            
         }
         else if (this.state.password === "") {
             this.setState({
@@ -51,12 +50,18 @@ export default class Login extends React.Component {
             })
         }
         else {
-            Controller.login(this.state.email, this.state.password);
-            this.setState({
-                openSnackBar: true,
-                SnackBarMessage: 'Password Cannot Be Empty'
-            });
-            this.props.history.push('/dashboard')
+            // console.log('first');
+            var a = Controller.login(this.state.email, this.state.password);
+            console.log('value of a ', a)
+            if (a) {
+                localStorage.setItem('Sender', this.state.email);
+                this.props.history.push('/dashboard');
+            } else {
+                this.setState({
+                    openSnackBar: true,
+                    SnackBarMessage: 'username or password is invalid'
+                });
+            }
         }
     }
     render() {
@@ -65,7 +70,6 @@ export default class Login extends React.Component {
                 <h1>LOGIN</h1>
                 <form >
                     <Card className="card">
-
                         <Snackbar
                             anchorOrigin={{
                                 vertical: 'bottom',

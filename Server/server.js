@@ -18,6 +18,7 @@ app.use(expressValidator());
 // app.use(Cors());
 const dbConfig = require('./Configuration/database.config')
 const mongoose = require('mongoose')
+const chatController = require('../Server/Controllers/chatController')
 // require('http').createServer(app);
 app.use(bodyParser.urlencoded({
     extended: true
@@ -46,10 +47,20 @@ const io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
     const connections = [];
     connections.push(socket);
-    console.log('user connected')
+    console.log('user connected');
+    // console.log(connections)
     socket.on('msg', function (req) {
         console.log('requested message', req);
-
+        chatController.addMessageToTheDatabase(req, (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(result);
+            }
+            io.emit(req.sender, result);
+            io.emit(req.receiver, result);
+        })
     })
 })
 io.on('disconnect', function () {

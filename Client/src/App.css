@@ -1,5 +1,6 @@
   .text{
     margin-top: 25px;
+    border-radius: 25px;
     margin-bottom: 12px;
   }
   .loginCss{
@@ -50,10 +51,12 @@
   } */
   .button
   {
+    border-radius: 25px;
     margin-right: 25px;
   }
 
   #regbutton{
+    border-radius: 25px;
     margin-right: 20px;
   }
   .card
@@ -68,7 +71,9 @@
   .heading{
     text-align: center;
   }
-  #createbutton{    margin-top: 30px;
+  #createbutton{   
+  margin-top: 30px;
+  border-radius: 25px;
   margin-bottom: 23px;
   }
   .DashBoard{
@@ -87,6 +92,7 @@
   }
   .DashButton
   {
+    border-radius: 25px;
     width: 745px;
     margin-left: 246px;
   }

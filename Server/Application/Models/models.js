@@ -34,7 +34,7 @@ var userScehma = new mongoose.Schema({
 var user = mongoose.model('users', userScehma)
 // console.log("dvhgvfd",user);
 exports.login = (req, callback) => {
-    console.log('yes', req.body)
+    // console.log('yes', req.body)
     user.findOne(
         { "email": req.body.email }, (error, result) => {
             if (error) {
@@ -55,7 +55,7 @@ exports.login = (req, callback) => {
         })
 }
 exports.register = (req, callback) => {
-    console.log("data regeister", req.body.password);
+    // console.log("data regeister", req.body.password);
     user.findOne({
         "email": req.body.email
     }, (err, data) => {
@@ -105,10 +105,10 @@ exports.forgotPassword = (req, callback) => {
         else {
             callback(null, result)
         }
-    })
+    })  
 }
 exports.getAllUsers = (req, callback) => {
-    user.findOne({}, (err, result) => {
+    user.find({}, (err, result) => {
         if (err) {
             callback(err);
         }

@@ -11,7 +11,7 @@ const tok = require('../token')
 const sendMail = require('../Middleware/nodeMailer')
 exports.login = (req, res) => {
     try {
-        console.log(req.body.data)
+        // console.log(req.body.data)
         req.checkBody('email', 'Invalid Email').isEmail();
         req.checkBody('password', 'Invalid Password').len(5, 20).notEmpty();
         valErrors = req.validationErrors();
@@ -40,7 +40,7 @@ exports.login = (req, res) => {
 }
 exports.register = (req, res) => {
     try {
-        console.log("req in controller", req.body);
+        // console.log("req in controller", req.body);
         req.checkBody('firstName', 'Invalid First Name').notEmpty().isAlpha();
         req.checkBody('lastName', 'Invalid Last Name').notEmpty().isAlpha();
         req.checkBody('email', 'Invalid Email').isEmail();
@@ -69,7 +69,7 @@ exports.register = (req, res) => {
 }
 exports.forgotPassword = (req, res) => {
     try {
-        console.log('forgotsdsasel', req.body);
+        // console.log('forgotsdsasel', req.body);
         req.checkBody('email', 'Invalid Email').isEmail();
         valErrors = req.validationErrors();
         var responseResult = {}

@@ -1,14 +1,9 @@
 var authServices = {
-    register:'/register',
-    login:'/login',
-    forgotPassowrd:'/forgotPassword',
-    resetPassword:'/resetPassword',
-    getAllUsers:'/getAllUsers'
+    register: '/register',
+    login: '/login',
+    forgotPassowrd: '/forgotPassword',
+    resetPassword: '/resetPassword',
+    getAllUsers: '/getAllUsers',
+    getAllUsersChats: '/getAllUsersChats'
 }
 export default authServices;
-// import axios from 'axios';
-// export function register(data)
-// {
-// console.log("data in users services frontend--->",data);
-// return axios.post("/register", data);
-// } 
