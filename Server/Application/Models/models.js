@@ -27,7 +27,7 @@ var userScehma = new mongoose.Schema({
     },
     "password":
     {
-        type: String,
+        type: String,   
         required: true,
     }
 })

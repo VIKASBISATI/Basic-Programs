@@ -1,3 +1,11 @@
+/******************************************************************************
+* @Purpose : CHATAPP
+* @file : routes.js
+* @overview : To give a call to the 
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 26/09/2019
+******************************************************************************/
 import authServices from '../services/userServices';
 import axios from 'axios';
 var controller = {
@@ -27,8 +35,13 @@ var controller = {
         }
         return axios.post(authServices.login, emailData).then(response => {
             if (response.status === 200) {
+                if(response.data===true){
                 console.log("login success");
                 return response;
+                }
+                else{
+                    return false;
+                }
             }
         })
             .catch(error => {
@@ -69,8 +82,10 @@ var controller = {
             })
     },
     getAllUsers() {
+
         return axios.get(authServices.getAllUsers).then(response => {
             if (response.status === 200) {
+                console.log('enteredddddd')
                 console.log(response.data);
                 return response.data;
             }
@@ -80,13 +95,14 @@ var controller = {
             })
     },
     getAllUsersChats() {
-        return axios.get(authServices.getAllUsersChats).then(response => {
+        console.log('enteredddddd')
+        return axios.get(authServices.getAllUsersChats).then((response) => {
             if (response.status === 200) {
                 console.log(response.data);
                 return response.data;
             }
         })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
             })
     }

@@ -18,13 +18,13 @@ app.use(expressValidator());
 // app.use(Cors());
 const dbConfig = require('./Configuration/database.config')
 const mongoose = require('mongoose')
-const chatController = require('../Server/Controllers/chatController')
+const chatController = require('../Server/Controllers/chatController') 
 // require('http').createServer(app);
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(bodyParser.json())
-app.use('/', routes)
+app.use('/', routes) 
 require('dotenv').config();
 //mongoose.Promise = global.Promise used for using mongoose anywhere in the code
 mongoose.Promise = global.Promise
@@ -43,20 +43,22 @@ app.get('/', (req, res) => {
 const server = app.listen(4000, () => {
     console.log("server listening on 4000 port");
 })
+//socket io is a library which helps for realtime bidirectional data sending between client and server
 const io = require('socket.io').listen(server);
 io.sockets.on('connection', function (socket) {
-    const connections = [];
-    connections.push(socket);
-    console.log('user connected');
+    // const connections = [];
+    // connections.push(socket);
+    // console.log('user connected');
     // console.log(connections)
-    socket.on('msg', function (req) {
-        console.log('requested message', req);
+    socket.on('NewMessage', function (req) {
+        //adding messages to the database which comes from the frontend
         chatController.addMessageToTheDatabase(req, (err, result) => {
+            console.log('requested message----------', req);
             if (err) {
-                console.log(err);
+                console.log(err)
             }
             else {
-                console.log(result);
+                console.log('sersver', result);
             }
             io.emit(req.sender, result);
             io.emit(req.receiver, result);

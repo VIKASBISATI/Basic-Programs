@@ -1,3 +1,11 @@
+/******************************************************************************
+* @Purpose : CHATAPP
+* @file : routes.js
+* @overview : To give a call to the 
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 26/09/2019
+******************************************************************************/
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -9,6 +17,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Card from '@material-ui/core/Card';
 import Controller from '../controllers/userController';
 import io from 'socket.io-client';
+// import { GridListTile } from '@material-ui/core';
 const socket = io.connect('http://localhost:4000');
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -29,75 +38,71 @@ export default class Dashboard extends React.Component {
                 this.setState({
                     allUsers: result
                 })
-                console.log("result-------", result);
             }).catch((err) => {
                 console.log("errrr", err);
             })
         Controller.getAllUsersChats()
             .then((result) => {
-                console.log('alllllllllllllllllll', result)
+                console.log('yessss its there', result)
                 this.setState({
                     message: result
                 })
-                console.log("result-------", result);
             }).catch((err) => {
                 console.log("errrr", err);
             })
+        console.log('message is ', this.state.message)
         const sen = localStorage.getItem('Sender');
-        socket.on(sen, function (res) {
+        socket.on(sen, (res) => {
+            const msgArr = this.state.msgArr;
+            console.log('res----------', res);
+            msgArr.push(res);
+            this.setState({
+                msgArr: msgArr
+            })
+            console.log('Dash board msgArray-----', this.state.msgArr);
         })
     }
     handleLogout = () => {
         this.props.history.push('/login')
     }
     handleMessage = (event) => {
+        // console.log("message to reciver-----", event.target.value);
         var msg = event.target.value;
         this.setState({
             msg: msg
         })
     }
     handleMenuClick = (event) => {
+        console.log("reciver---------", event.target.textContent);
         var Receiver = event.target.textContent;
         this.setState({
             Receiver: Receiver
         })
     }
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        event.preventDefault();
         var Sender = localStorage.getItem('Sender');
-        console.log('asdfaf',this.state.msg)
         this.setState({
             Sender: Sender
         })
         var data = {
-            message: this.state.msg,
-            sender: Sender,
-            receiver: this.state.Receiver
-
+            messageDb: this.state.msg,
+            from: Sender,
+            to: this.state.Receiver
         }
-        console.log(data);
+        console.log("eimiting");
         socket.emit('NewMessage', data);
         this.setState({
             msg: ''
         })
     }
+    handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            this.handleSubmit(e);
+        }
+    }
     render() {
-        // const msgArray = this.state.msgArr.map((key) => {
-        //     return (
-        //         <div>
-        //             {
-        //                 key.sender === this.state.Receiver ?
-        //                     (<div>
-        //                         <label>{key.sender}</label>
-        //                         <div>{key.message}</div>
-        //                     </div>) :
-        //                     (<div>
-        //                         <label>{key.sender}</label>
-        //                         <div>{key.message}</div>
-        //                     </div>)
-        //             }
-        //         </div>
-        //     )
-        // })
         const allUsersLogin = this.state.allUsers.map((key) => {
             if (key.email !== localStorage.getItem('Sender')) {
                 return (
@@ -111,18 +116,20 @@ export default class Dashboard extends React.Component {
             }
         })
         const msgDisplay = this.state.message.map((key) => {
+            console.log('key is hell', key)
+            const s = localStorage.getItem('Sender');
+            console.log('s is ', s);
+            // console.log('After key sender',this.state.Sender)
             return (
                 <div>
                     {
-                        key.sender === this.state.Sender ?
-                            (<div>
-                                <label>{key.sender}</label>
-                                <div>{key.message}</div>
-                            </div>) :
-                            (<div>
-                                <label>{key.sender}</label>
-                                <div>{key.message}</div>
+                        key.from === s ?
+                            (<div className="ReceiverCss">
+                                <div> {key.messageDb}</div>
                             </div>)
+                            : <div className='SenderCss'>
+                                <div>{key.messageDb}</div>
+                            </div>
                     }
                 </div>
             )
@@ -134,17 +141,21 @@ export default class Dashboard extends React.Component {
                         <Typography variant="h6">
                             ChatApp DashBoard
                         </Typography>
-                        <Button color="secondary" style={{ marginLeft: "950px" }} onClick={this.handleLogout}>Logout</Button>
+                        <p style={{ marginLeft: "627px" }}>{localStorage.getItem('Sender')}</p>
+                        <Button color="secondary" style={{ marginRigth: "1804px" }} onClick={this.handleLogout}>Logout</Button>
                     </Toolbar>
                 </AppBar>
                 <div>
                     <Card className="FirstCard">
                         {allUsersLogin}
                     </Card>
-                    <Card className="SecondCard">
+                    {/* <Card className="SecondCard"> */}
+                    <div className="SecondCard">
                         {localStorage.getItem('Sender')}
-                        {msgDisplay}
-                    </Card>
+                        {/* {msgArray} */}
+                        <div>{msgDisplay}</div>
+                    </div>
+                    {/* </Card> */}
                 </div>
                 <form className="DashBoard">
                     <div>
@@ -153,12 +164,17 @@ export default class Dashboard extends React.Component {
                             label="Message"
                             style={{ margin: 8 }}
                             onChange={this.handleMessage}
+                            value={this.state.msg}
+                            onKeyPress={this.handleEnter}
                             placeholder="Type your message"
                             fullWidth
                             margin="normal"
                             variant="filled"
                         />
-                        <Button variant="contained" color="secondary" className="DashButon" onClick={this.handleSubmit}  >
+                        <Button variant="contained"
+                            color="secondary"
+                            className="DashButon"
+                            onClick={this.handleSubmit}  >
                             Send
                     </Button>
                     </div>

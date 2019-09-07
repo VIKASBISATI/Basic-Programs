@@ -1,3 +1,11 @@
+/******************************************************************************
+* @Purpose : CHATAPP
+* @file : routes.js
+* @overview : To give a call to the 
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 26/09/2019
+******************************************************************************/
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { Card } from '@material-ui/core';
@@ -49,19 +57,43 @@ export default class Login extends React.Component {
                 SnackBarMessage: 'Password Cannot Be Empty'
             })
         }
+        else if (!/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(this.state.email)) {
+            this.setState({
+                openSnackBar: true,
+                SnackBarMessage: 'Email format is wrong'
+            })
+        }
         else {
             // console.log('first');
-            var a = Controller.login(this.state.email, this.state.password);
-            console.log('value of a ', a)
-            if (a) {
-                localStorage.setItem('Sender', this.state.email);
-                this.props.history.push('/dashboard');
-            } else {
-                this.setState({
-                    openSnackBar: true,
-                    SnackBarMessage: 'username or password is invalid'
-                });
-            }
+            Controller.login(this.state.email, this.state.password).then((res) => {
+                console.log('res.data', res.data)
+                if (res.data) {
+                    this.setState({
+                        openSnackBar: true,
+                        SnackBarMessage: 'Login Success'
+                    })
+                    localStorage.setItem('Sender', this.state.email)
+                    this.props.history.push('/dashboard');
+                }
+                else {
+                    this.setState({
+                        openSnackBar: true,
+                        SnackBarMessage: 'Error please try again'
+                    })
+                    this.setState({
+                        email: '',
+                        password: ''
+                    })
+                    return;
+                }
+            })
+                .catch((err) => {
+                    console.log(err);
+                    this.setState({
+                        openSnackBar: true,
+                        SnackBarMessage: 'Error please try again'
+                    })
+                })
         }
     }
     render() {
@@ -81,7 +113,7 @@ export default class Login extends React.Component {
                             onClose={this.snackbarClose}
                             message={<span id="messege-id">{this.state.SnackBarMessage}</span>}
                             action={[
-                                <IconButton
+                                <IconButton 
                                     key="close"
                                     arial-label="close"
                                     color="inherit"

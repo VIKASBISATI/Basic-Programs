@@ -1,3 +1,11 @@
+/******************************************************************************
+* @Purpose : CHATAPP
+* @file : routes.js
+* @overview : To give a call to the 
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 26/09/2019
+******************************************************************************/
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from './pages/login'
@@ -5,7 +13,7 @@ import Register from './pages/register'
 import ForgotPassword from './pages/forgotPassword'
 import ResetPassword from './pages/resetPassword'
 import DashBoard from './components/dashboard'
-import './App.css';
+import './App.css'; 
 class App extends React.Component {
   render() {
     return (

@@ -1,17 +1,26 @@
+/******************************************************************************
+* @Purpose : CHATAPP
+* @file : routes.js
+* @overview : To give a call to the 
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 26/09/2019
+******************************************************************************/
 var services = require('../Services/chatServices');
-exports.addMessageToTheDatabase = (req, res) => {
+exports.addMessageToTheDatabase = (req, callback) => {
+    // console.log('add message in cntrl-----------',req)
     try {
-        services.addMessageToTheDatabase(req, (err, result) => {
-
+        services.addMessageToTheDatabase(req, (err,result)=> {
             if (err) {
-                res.status(404).send(err);
+                return callback(err);
             }
             else {
-                res.status(200).send(result);
+                // console.log(,result)
+                return callback(null,result);
             }
         })
     } catch (err) {
-        res.send(err);
+       console.log(err)
     }
 }
 exports.getAllUsersChats = (req, res) => {
@@ -27,6 +36,6 @@ exports.getAllUsersChats = (req, res) => {
             }
         });
     } catch (err) {
-        res.send(err);
+        console.log(err)
     }
 }

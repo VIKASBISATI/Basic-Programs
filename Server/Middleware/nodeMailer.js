@@ -1,3 +1,11 @@
+/******************************************************************************
+* @Purpose : CHATAPP
+* @file : routes.js
+* @overview : To give a call to the 
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 26/09/2019
+******************************************************************************/
 exports.sendMailToTheUser = (Email, url) => {
     var nodeMailer = require('nodemailer');
     var trans = nodeMailer.createTransport({

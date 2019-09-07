@@ -17,7 +17,7 @@ exports.generateToken = (payload) => {
 }
 exports.verifyToken=(req,res,next)=>
 {
-     
+      
     const secKey = process.env.secret;
     jwt.verify(req.params.token, secKey, function(err, decoded) {
        if(err) res.status(400).send(err);

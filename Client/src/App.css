@@ -1,3 +1,11 @@
+  /******************************************************************************
+* @Purpose : CHATAPP
+* @file : routes.js
+* @overview : To give a call to the 
+* @author : BISATI SAI VENKATA VIKAS
+* @version : v8.15.0
+* @since : 26/09/2019
+******************************************************************************/
   .text{
     margin-top: 25px;
     border-radius: 25px;
@@ -8,8 +16,6 @@
     margin-top: 25px
   }
   .registerCss{
-
-    /* border:1px solid blue; */
     background-size:cover;
     text-align : center;
   }
@@ -104,4 +110,21 @@
       margin-top: -504px;
       width: 730px; 
       height:500px;
+      overflow-y: auto;
+  }
+  .SenderCss{
+    margin-right :500px;
+    background-color: red ;
+    border-radius: 20px;
+    width: 190px;
+    padding: 10px;
+    margin-bottom: 10px
+  }
+  .ReceiverCss{
+    background-color: blueviolet ;
+    border-radius: 20px;
+    width: 190px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 500px
   }

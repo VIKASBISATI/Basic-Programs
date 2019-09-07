@@ -24,19 +24,19 @@ exports.login = (req, res) => {
         else {
             services.login(req, (err, result) => {
                 if (err) {
-                    console.log(res); 
-                    responseResult.msg = "Failed Login"
-                    res.status(404).send(responseResult);
+                    console.log(res);
+                    responseResult.msg = false
+                    res.status(404).send(false);
                 }
                 else {
-                    responseResult.msg = "Login Successfully"
-                    res.status(200).send(responseResult);
+                    responseResult.msg = true
+                    res.status(200).send(true);
                 }
             });
-        }
+        } 
     } catch (err) {
         res.send(err);
-    } 
+    }
 }
 exports.register = (req, res) => {
     try {
@@ -90,7 +90,7 @@ exports.forgotPassword = (req, res) => {
                         userid: result._id
                     }
                     const token = tok.generateToken(payload);
-                    const url = process.env.url + 'resetPassword/' + token;
+                    const url = process.env.url + 'resetPassword/' + token; 
                     console.log(url);
                     sendMail.sendMailToTheUser(result.email, url);
                     res.status(200).send(url);
