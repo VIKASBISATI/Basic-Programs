@@ -7,6 +7,7 @@
 * @since : 26/09/2019
 ******************************************************************************/
 exports.sendMailToTheUser = (Email, url) => {
+    //node mailer is a library used for sending the mails to the users
     var nodeMailer = require('nodemailer');
     var trans = nodeMailer.createTransport({
         service: 'gmail',
@@ -22,6 +23,7 @@ exports.sendMailToTheUser = (Email, url) => {
         text: 'ResetPassword Link  :  ' + url
     };
     // console.log('asdfasd',mailOptions) 
+    //SendMail is used for sending the mail to the users 
     trans.sendMail(mailOptions, function (err, inf) {
         if (err) {
             console.log("Message not sent ",err);

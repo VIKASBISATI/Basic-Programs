@@ -11,6 +11,7 @@ const routes = express.Router();
 const controller = require('../Controllers/controller');
 const chatControllers = require('../Controllers/chatController')
 const ver = require('../token');
+//the below code is used for routing purpose
 routes.post('/login', controller.login);
 routes.post('/register', controller.register);
 routes.post('/forgotPassword', controller.forgotPassword);

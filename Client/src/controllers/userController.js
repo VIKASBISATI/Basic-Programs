@@ -85,7 +85,6 @@ var controller = {
 
         return axios.get(authServices.getAllUsers).then(response => {
             if (response.status === 200) {
-                console.log('enteredddddd')
                 console.log(response.data);
                 return response.data;
             }
@@ -95,7 +94,6 @@ var controller = {
             })
     },
     getAllUsersChats() {
-        console.log('enteredddddd')
         return axios.get(authServices.getAllUsersChats).then((response) => {
             if (response.status === 200) {
                 console.log(response.data);

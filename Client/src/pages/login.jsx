@@ -13,7 +13,9 @@ import Button from '@material-ui/core/Button';
 import Controller from '../controllers/userController';
 import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
+//class Login extends React.Component or we can use React.createClass
 export default class Login extends React.Component {
+    //states are just like the variables and props are shorthand for properties
     constructor(props) {
         super(props);
         this.state = {
@@ -23,6 +25,7 @@ export default class Login extends React.Component {
             SnackBarMessage: ""
         }
     }
+    //snackbar is used for displaying the error messages 
     snackbarClose = (e) => {
         this.setState({ openSnackBar: false });
     }

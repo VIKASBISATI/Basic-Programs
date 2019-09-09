@@ -43,57 +43,49 @@ export default class Dashboard extends React.Component {
             })
         Controller.getAllUsersChats()
             .then((result) => {
-                console.log('yessss its there', result)
                 this.setState({
                     message: result
                 })
             }).catch((err) => {
                 console.log("errrr", err);
             })
-        console.log('message is ', this.state.message)
-        const sen = localStorage.getItem('Sender');
-        socket.on(sen, (res) => {
-            const msgArr = this.state.msgArr;
-            console.log('res----------', res);
-            msgArr.push(res);
-            this.setState({
-                msgArr: msgArr
-            })
-            console.log('Dash board msgArray-----', this.state.msgArr);
+        // const sen = localStorage.getItem('Sender');
+        socket.on('Message', (result) => {
+            const message = this.state.message;
+            message.push(result);
+            this.setState({ message: message });
         })
     }
     handleLogout = () => {
         this.props.history.push('/login')
     }
     handleMessage = (event) => {
-        // console.log("message to reciver-----", event.target.value);
         var msg = event.target.value;
         this.setState({
             msg: msg
         })
     }
-    handleMenuClick = (event) => {
-        console.log("reciver---------", event.target.textContent);
-        var Receiver = event.target.textContent;
-        this.setState({
-            Receiver: Receiver
-        })
-    }
+    handleMenuClick = (key, event) => {
+        this.setState({ anchorEl: null });
+        let Receiver = event.target.textContent;
+        this.setState({ Receiver: Receiver });
+    };
     handleSubmit = (event) => {
         event.preventDefault();
-        var Sender = localStorage.getItem('Sender');
+        const Sender = localStorage.getItem('Sender');
         this.setState({
             Sender: Sender
         })
-        var data = {
+        const data = {
             messageDb: this.state.msg,
             from: Sender,
             to: this.state.Receiver
         }
-        console.log("eimiting");
-        socket.emit('NewMessage', data);
+        console.log("data----------",data);
+        socket.emit('FrontEndMessage', data);
         this.setState({
-            msg: ''
+            msg: '',
+            anchorEl: null
         })
     }
     handleEnter = (e) => {
@@ -103,11 +95,32 @@ export default class Dashboard extends React.Component {
         }
     }
     render() {
+
+        const msgArray = this.state.msgArr.map((key) => {
+            const senddd = localStorage.getItem('Sender');
+            return (
+                <div >
+                    {key.from === senddd ? (
+                        key.from === this.state.Receiver ?
+                            (
+                                <div className="SenderCss">
+                                    <div>{key.messageDb}</div>
+                                </div>) : (null)
+                    ) : (null)}
+                    {key.from === this.state.Receiver ? (
+                        <div className="ReceiverCss">
+                            <div>{key.messageDb} </div>
+                        </div>
+                    ) : (null)
+                    }
+                </div>
+            )
+        })
         const allUsersLogin = this.state.allUsers.map((key) => {
             if (key.email !== localStorage.getItem('Sender')) {
                 return (
                     <div>
-                        <MenuItem onClick={this.handleMenuClick}>{key.email}</MenuItem>
+                        <MenuItem onClick={(event)=>this.handleMenuClick(key, event)}>{key.email}</MenuItem>
                     </div>
                 )
             }
@@ -116,10 +129,7 @@ export default class Dashboard extends React.Component {
             }
         })
         const msgDisplay = this.state.message.map((key) => {
-            console.log('key is hell', key)
             const s = localStorage.getItem('Sender');
-            console.log('s is ', s);
-            // console.log('After key sender',this.state.Sender)
             return (
                 <div>
                     {
@@ -142,7 +152,7 @@ export default class Dashboard extends React.Component {
                             ChatApp DashBoard
                         </Typography>
                         <p style={{ marginLeft: "627px" }}>{localStorage.getItem('Sender')}</p>
-                        <Button color="secondary" style={{ marginRigth: "1804px" }} onClick={this.handleLogout}>Logout</Button>
+                        <Button color="secondary" style={{ marginRight: "1804px" }} onClick={this.handleLogout}>Logout</Button>
                     </Toolbar>
                 </AppBar>
                 <div>
@@ -152,7 +162,7 @@ export default class Dashboard extends React.Component {
                     {/* <Card className="SecondCard"> */}
                     <div className="SecondCard">
                         {localStorage.getItem('Sender')}
-                        {/* {msgArray} */}
+                        <div>{msgArray}</div>
                         <div>{msgDisplay}</div>
                     </div>
                     {/* </Card> */}

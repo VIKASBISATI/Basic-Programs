@@ -12,21 +12,20 @@ const express = require('express')
 const bodyParser = require('body-parser')
 //app variable give the access to use http methods and some other methods
 const app = express()
-// const Cors = require('cors');
 var expressValidator = require('express-validator')
 app.use(expressValidator());
 // app.use(Cors());
 const dbConfig = require('./Configuration/database.config')
 const mongoose = require('mongoose')
-const chatController = require('../Server/Controllers/chatController') 
+const chatController = require('../Server/Controllers/chatController')
 // require('http').createServer(app);
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(bodyParser.json())
-app.use('/', routes) 
+app.use('/', routes)
 require('dotenv').config();
-//mongoose.Promise = global.Promise used for using mongoose anywhere in the code
+//mongoose.Promise = global.Promise is a legace code no need to write it after mongoose 5
 mongoose.Promise = global.Promise
 //promise then and catch have a call back for successfull connection and catch for failed connection 
 mongoose.connect(dbConfig.url, {
@@ -43,29 +42,18 @@ app.get('/', (req, res) => {
 const server = app.listen(4000, () => {
     console.log("server listening on 4000 port");
 })
-//socket io is a library which helps for realtime bidirectional data sending between client and server
 const io = require('socket.io').listen(server);
-io.sockets.on('connection', function (socket) {
-    // const connections = [];
-    // connections.push(socket);
-    // console.log('user connected');
-    // console.log(connections)
-    socket.on('NewMessage', function (req) {
-        //adding messages to the database which comes from the frontend
-        chatController.addMessageToTheDatabase(req, (err, result) => {
-            console.log('requested message----------', req);
+io.on('connection', (socket) => {
+    console.log("user connected")
+    socket.on('FrontEndMessage', data => {
+        chatController.addMessageToTheDatabase(data, (err, result) => {
             if (err) {
-                console.log(err)
+                console.log("error on server while receiving data");
+            } else {
+                console.log(result)
+                io.sockets.emit('Message', result)
             }
-            else {
-                console.log('sersver', result);
-            }
-            io.emit(req.sender, result);
-            io.emit(req.receiver, result);
         })
     })
-})
-io.on('disconnect', function () {
-    io.emit('User Disconnected')
 })
 module.exports = app; 

@@ -12,11 +12,13 @@ const sendMail = require('../Middleware/nodeMailer')
 exports.login = (req, res) => {
     try {
         // console.log(req.body.data)
+        //checking the format of the request by the user
         req.checkBody('email', 'Invalid Email').isEmail();
         req.checkBody('password', 'Invalid Password').len(5, 20).notEmpty();
         valErrors = req.validationErrors();
         var responseResult = {}
         if (valErrors) {
+            //if any errors are there it the requrest considered as a unprocessable entity
             responseResult.error = valErrors;
             responseResult.success = false;
             return res.status(422).send(responseResult);
@@ -33,7 +35,7 @@ exports.login = (req, res) => {
                     res.status(200).send(true);
                 }
             });
-        } 
+        }
     } catch (err) {
         res.send(err);
     }
@@ -41,6 +43,7 @@ exports.login = (req, res) => {
 exports.register = (req, res) => {
     try {
         // console.log("req in controller", req.body);
+        //checking the format of the request by the user
         req.checkBody('firstName', 'Invalid First Name').notEmpty().isAlpha();
         req.checkBody('lastName', 'Invalid Last Name').notEmpty().isAlpha();
         req.checkBody('email', 'Invalid Email').isEmail();
@@ -48,6 +51,7 @@ exports.register = (req, res) => {
         valErrors = req.validationErrors();
         var responseResult = {}
         if (valErrors) {
+            //if any errors are there it the requrest considered as a unprocessable entity
             responseResult.error = valErrors;
             responseResult.success = false;
             console.log(responseResult)
@@ -69,11 +73,13 @@ exports.register = (req, res) => {
 }
 exports.forgotPassword = (req, res) => {
     try {
+        //checking the format of the request by the user
         // console.log('forgotsdsasel', req.body);
         req.checkBody('email', 'Invalid Email').isEmail();
         valErrors = req.validationErrors();
         var responseResult = {}
         if (valErrors) {
+            //if any errors are there it the requrest considered as a unprocessable entity
             responseResult.error = valErrors;
             responseResult.success = false;
             res.status(422).send(responseResult);
@@ -90,7 +96,7 @@ exports.forgotPassword = (req, res) => {
                         userid: result._id
                     }
                     const token = tok.generateToken(payload);
-                    const url = process.env.url + 'resetPassword/' + token; 
+                    const url = process.env.url + 'resetPassword/' + token;
                     console.log(url);
                     sendMail.sendMailToTheUser(result.email, url);
                     res.status(200).send(url);
@@ -103,6 +109,7 @@ exports.forgotPassword = (req, res) => {
 }
 exports.setPassword = (req, res) => {
     try {
+        //checking the format of the request by the user
         req.checkBody('password', 'Invalid Password').len(5, 20).notEmpty();
         req.checkBody('confirmpassword', 'Invalid Password').len(5, 20).notEmpty();
         valErrors = req.validationErrors();
@@ -112,12 +119,12 @@ exports.setPassword = (req, res) => {
             valErrors = 'passwords are not matched'
         }
         if (valErrors) {
+            //if any errors are there it the requrest considered as a unprocessable entity
             responseResult.error = valErrors;
             responseResult.success = false;
             console.log('status 420 yes');
             return res.status(422).send(responseResult);
         }
-
         else {
             services.setPassword(req, (err, result) => {
                 if (err) {
