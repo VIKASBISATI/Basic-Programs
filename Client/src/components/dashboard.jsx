@@ -27,7 +27,6 @@ export default class Dashboard extends React.Component {
             msg: '',
             Sender: '',
             Receiver: '',
-            msgArr: [],
             message: [],
             msgDisplay: ''
         }
@@ -95,27 +94,6 @@ export default class Dashboard extends React.Component {
         }
     }
     render() {
-
-        const msgArray = this.state.msgArr.map((key) => {
-            const senddd = localStorage.getItem('Sender');
-            return (
-                <div >
-                    {key.from === senddd ? (
-                        key.from === this.state.Receiver ?
-                            (
-                                <div className="SenderCss">
-                                    <div>{key.messageDb}</div>
-                                </div>) : (null)
-                    ) : (null)}
-                    {key.from === this.state.Receiver ? (
-                        <div className="ReceiverCss">
-                            <div>{key.messageDb} </div>
-                        </div>
-                    ) : (null)
-                    }
-                </div>
-            )
-        })
         const allUsersLogin = this.state.allUsers.map((key) => {
             if (key.email !== localStorage.getItem('Sender')) {
                 return (
@@ -162,7 +140,7 @@ export default class Dashboard extends React.Component {
                     {/* <Card className="SecondCard"> */}
                     <div className="SecondCard">
                         {localStorage.getItem('Sender')}
-                        <div>{msgArray}</div>
+                        {/* <div>{msgArray}</div> */}
                         <div>{msgDisplay}</div>
                     </div>
                     {/* </Card> */}
